@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeSecurity.DAL.Migrations
 {
     [DbContext(typeof(HomeSecurityDbContext))]
-    [Migration("20250331093948_InitialCreate")]
+    [Migration("20250331165104_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -130,7 +130,7 @@ namespace HomeSecurity.DAL.Migrations
                         new
                         {
                             Id = 1,
-                            Data = "no motion",
+                            Data = "Рух не виявлено",
                             DataLabel = "Рух",
                             IsAlert = false,
                             LocationId = 1,
@@ -173,7 +173,7 @@ namespace HomeSecurity.DAL.Migrations
                         new
                         {
                             Id = 5,
-                            Data = "no motion",
+                            Data = "Рух не виявлено",
                             DataLabel = "Рух",
                             IsAlert = false,
                             LocationId = 2,
@@ -183,8 +183,8 @@ namespace HomeSecurity.DAL.Migrations
                         new
                         {
                             Id = 6,
-                            Data = "no motion",
-                            DataLabel = "Стан",
+                            Data = "Рух не виявлено",
+                            DataLabel = "Рух",
                             IsAlert = false,
                             LocationId = 3,
                             Name = "Датчик відкриття дверей - Тамбур",
@@ -193,7 +193,7 @@ namespace HomeSecurity.DAL.Migrations
                         new
                         {
                             Id = 7,
-                            Data = "no motion",
+                            Data = "Рух не виявлено",
                             DataLabel = "Рух",
                             IsAlert = false,
                             LocationId = 3,
@@ -203,8 +203,8 @@ namespace HomeSecurity.DAL.Migrations
                         new
                         {
                             Id = 8,
-                            Data = "no motion",
-                            DataLabel = "Стан",
+                            Data = "Рух не виявлено",
+                            DataLabel = "Рух",
                             IsAlert = false,
                             LocationId = 4,
                             Name = "Датчик відкриття дверей - Задній вхід",
@@ -214,7 +214,7 @@ namespace HomeSecurity.DAL.Migrations
                         {
                             Id = 9,
                             Data = "no motion",
-                            DataLabel = "Стан",
+                            DataLabel = "Рух",
                             IsAlert = false,
                             LocationId = 5,
                             Name = "Датчик відкриття дверей - Підсобне приміщення",
