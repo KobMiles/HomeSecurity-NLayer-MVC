@@ -2,124 +2,146 @@
     ViewData["Title"] = "Система безпеки дому";
 }
 
-<div class="container mt-4">
-    <h1 class="mb-4">Система безпеки дому</h1>
+<div class="container py-4">
+    <h1 class="mb-5 text-center fw-bold text-primary">
+        <i class="bi bi-shield-lock-fill me-2"></i>Система безпеки дому
+    </h1>
 
-    <div class="row">
-        <div class="col-md-6">
-            <h3>Датчики розбиття скла:</h3>
-            <div class="table-responsive">
-                <table id="glassBreakTable" class="table table-bordered align-middle">
-                    <thead class="table-light">
-                    <tr>
-                        <th>Назва</th>
-                        <th>Локація</th>
-                        <th>DataLabel</th>
-                        <th>Поточні дані</th>
-                        <th>Alert</th>
-                    </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+    <div class="row g-4">
+        <!-- Датчики розбиття скла -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white text-center">
+                    <i class="bi bi-exclamation-triangle-fill me-1"></i> Датчики розбиття скла
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table id="glassBreakTable" class="table table-striped table-hover align-middle mb-0 text-center">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Назва</th>
+                                    <th>Локація</th>
+                                    <th>Параметр</th>
+                                    <th>Значення</th>
+                                    <th>Сигнал тривоги</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-6">
-            <h3>Датчики відкриття дверей:</h3>
-            <div class="table-responsive">
-                <table id="doorTable" class="table table-bordered align-middle">
-                    <thead class="table-light">
-                        <tr>
-                            <th>Назва</th>
-                            <th>Локація</th>
-                            <th>DataLabel</th>
-                            <th>Поточні дані</th>
-                            <th>Alert</th>
-                        </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-
-        <div class="col-md-6">
-            <h3>Датчики руху:</h3>
-            <div class="table-responsive">
-                <table id="motionTable" class="table table-bordered align-middle">
-                    <thead class="table-light">
-                    <tr>
-                        <th>Назва</th>
-                        <th>Локація</th>
-                        <th>DataLabel</th>
-                        <th>Поточні дані</th>
-                        <th>Alert</th>
-                    </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+        <!-- Датчики відкриття дверей -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white text-center">
+                    <i class="bi bi-door-open-fill me-1"></i> Датчики відкриття дверей
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table id="doorTable" class="table table-striped table-hover align-middle mb-0 text-center">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Назва</th>
+                                    <th>Локація</th>
+                                    <th>Параметр</th>
+                                    <th>Значення</th>
+                                    <th>Сигнал тривоги</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-6">
-            <h3>Відеодзвінок</h3>
-            <div class="table-responsive">
-                <table id="videoDoorbellTable" class="table table-bordered align-middle">
-                    <thead class="table-light">
-                    <tr>
-                        <th>Назва</th>
-                        <th>Локація</th>
-                        <th>DataLabel</th>
-                        <th>Поточні дані</th>
-                        <th>Alert</th>
-                    </tr>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+        <!-- Датчики руху -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white text-center">
+                    <i class="bi bi-person-walking me-1"></i> Датчики руху
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table id="motionTable" class="table table-striped table-hover align-middle mb-0 text-center">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Назва</th>
+                                    <th>Локація</th>
+                                    <th>Параметр</th>
+                                    <th>Значення</th>
+                                    <th>Сигнал тривоги</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 
+        <!-- Відеодзвінок -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white text-center">
+                    <i class="bi bi-camera-video-fill me-1"></i> Відеодзвінок
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table id="videoDoorbellTable" class="table table-striped table-hover align-middle mb-0 text-center">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Назва</th>
+                                    <th>Локація</th>
+                                    <th>Параметр</th>
+                                    <th>Значення</th>
+                                    <th>Сигнал тривоги</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 @section Scripts {
     <script>
         function buildTableRows(sensors) {
-            let html = "";
-            sensors.forEach(s => {
-                html += `
+            return sensors.map(s => {
+                const badge = s.isAlert
+                    ? '<span class="badge bg-danger">Тривога</span>'
+                    : '<span class="badge bg-success">Норма</span>';
+
+                return `
                     <tr>
-                        <td>${s.name}</td>
-                        <td>${s.locationName}</td>
-                        <td>${s.dataLabel}</td>
-                        <td>${s.data}</td>
-                        <td>${s.isAlert ? "Так" : "Ні"}</td>
+                        <td class="col-name">${s.name}</td>
+                        <td class="col-location">${s.locationName}</td>
+                        <td class="col-label">${s.dataLabel}</td>
+                        <td class="col-value">${s.data}</td>
+                        <td class="col-alert text-center">${badge}</td>
                     </tr>`;
-            });
-            return html;
+            }).join('');
         }
 
         function updateSensors() {
             fetch('/Home/GetSensors')
                 .then(response => response.json())
                 .then(data => {
-                    const glassBreak = data.filter(x => x.sensorType === 0);
-                    const door = data.filter(x => x.sensorType === 1);
-                    const motion = data.filter(x => x.sensorType === 2);
-                    const video = data.filter(x => x.sensorType === 3);
-
-                    document.querySelector('#glassBreakTable tbody').innerHTML = buildTableRows(glassBreak);
-                    document.querySelector('#doorTable tbody').innerHTML = buildTableRows(door);
-                    document.querySelector('#motionTable tbody').innerHTML = buildTableRows(motion);
-                    document.querySelector('#videoDoorbellTable tbody').innerHTML = buildTableRows(video);
+                    document.querySelector('#glassBreakTable tbody').innerHTML = buildTableRows(data.filter(x => x.sensorType === 0));
+                    document.querySelector('#doorTable tbody').innerHTML = buildTableRows(data.filter(x => x.sensorType === 1));
+                    document.querySelector('#motionTable tbody').innerHTML = buildTableRows(data.filter(x => x.sensorType === 2));
+                    document.querySelector('#videoDoorbellTable tbody').innerHTML = buildTableRows(data.filter(x => x.sensorType === 3));
                 })
                 .catch(err => console.error('Помилка при оновленні сенсорів:', err));
         }
 
         setInterval(updateSensors, 3000);
-
         document.addEventListener("DOMContentLoaded", updateSensors);
     </script>
 }
