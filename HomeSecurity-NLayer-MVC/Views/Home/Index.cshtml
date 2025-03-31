@@ -7,9 +7,140 @@
         <i class="bi bi-shield-lock-fill me-2"></i>Система безпеки дому
     </h1>
 
-    <div class="row g-4">
-        <!-- Датчики розбиття скла -->
-        <div class="col-lg-6">
+    <!-- Навігаційні вкладки -->
+    <ul class="nav nav-tabs" id="sensorTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="all-sensors-tab" data-bs-toggle="tab" data-bs-target="#all-sensors" type="button" role="tab" aria-controls="all-sensors" aria-selected="true">
+                Всі датчики
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="glass-sensors-tab" data-bs-toggle="tab" data-bs-target="#glass-sensors" type="button" role="tab" aria-controls="glass-sensors" aria-selected="false">
+                Датчики розбиття скла
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="door-sensors-tab" data-bs-toggle="tab" data-bs-target="#door-sensors" type="button" role="tab" aria-controls="door-sensors" aria-selected="false">
+                Датчики відкриття дверей
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="motion-sensors-tab" data-bs-toggle="tab" data-bs-target="#motion-sensors" type="button" role="tab" aria-controls="motion-sensors" aria-selected="false">
+                Датчики руху
+            </button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="video-sensors-tab" data-bs-toggle="tab" data-bs-target="#video-sensors" type="button" role="tab" aria-controls="video-sensors" aria-selected="false">
+                Відеодзвінок
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content mt-4" id="sensorTabsContent">
+        <!-- Вкладка "Всі датчики" -->
+        <div class="tab-pane fade show active" id="all-sensors" role="tabpanel" aria-labelledby="all-sensors-tab">
+            <div class="row g-4">
+                <!-- Датчики розбиття скла -->
+                <div class="col-lg-6">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-primary text-white text-center">
+                            <i class="bi bi-exclamation-triangle-fill me-1"></i> Датчики розбиття скла
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table id="glassBreakTableAll" class="table table-striped table-hover align-middle mb-0 text-center">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Назва</th>
+                                            <th>Локація</th>
+                                            <th>Параметр</th>
+                                            <th>Значення</th>
+                                            <th>Сигнал тривоги</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Датчики відкриття дверей -->
+                <div class="col-lg-6">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-primary text-white text-center">
+                            <i class="bi bi-door-open-fill me-1"></i> Датчики відкриття дверей
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table id="doorTableAll" class="table table-striped table-hover align-middle mb-0 text-center">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Назва</th>
+                                            <th>Локація</th>
+                                            <th>Параметр</th>
+                                            <th>Значення</th>
+                                            <th>Сигнал тривоги</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Датчики руху -->
+                <div class="col-lg-6">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-primary text-white text-center">
+                            <i class="bi bi-person-walking me-1"></i> Датчики руху
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table id="motionTableAll" class="table table-striped table-hover align-middle mb-0 text-center">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Назва</th>
+                                            <th>Локація</th>
+                                            <th>Параметр</th>
+                                            <th>Значення</th>
+                                            <th>Сигнал тривоги</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Відеодзвінок -->
+                <div class="col-lg-6">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-header bg-primary text-white text-center">
+                            <i class="bi bi-camera-video-fill me-1"></i> Відеодзвінок
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table id="videoDoorbellTableAll" class="table table-striped table-hover align-middle mb-0 text-center">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Назва</th>
+                                            <th>Локація</th>
+                                            <th>Параметр</th>
+                                            <th>Значення</th>
+                                            <th>Сигнал тривоги</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Вкладка "Датчики розбиття скла" -->
+        <div class="tab-pane fade" id="glass-sensors" role="tabpanel" aria-labelledby="glass-sensors-tab">
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-primary text-white text-center">
                     <i class="bi bi-exclamation-triangle-fill me-1"></i> Датчики розбиття скла
@@ -33,8 +164,8 @@
             </div>
         </div>
 
-        <!-- Датчики відкриття дверей -->
-        <div class="col-lg-6">
+        <!-- Вкладка "Датчики відкриття дверей" -->
+        <div class="tab-pane fade" id="door-sensors" role="tabpanel" aria-labelledby="door-sensors-tab">
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-primary text-white text-center">
                     <i class="bi bi-door-open-fill me-1"></i> Датчики відкриття дверей
@@ -58,8 +189,8 @@
             </div>
         </div>
 
-        <!-- Датчики руху -->
-        <div class="col-lg-6">
+        <!-- Вкладка "Датчики руху" -->
+        <div class="tab-pane fade" id="motion-sensors" role="tabpanel" aria-labelledby="motion-sensors-tab">
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-primary text-white text-center">
                     <i class="bi bi-person-walking me-1"></i> Датчики руху
@@ -83,8 +214,8 @@
             </div>
         </div>
 
-        <!-- Відеодзвінок -->
-        <div class="col-lg-6">
+        <!-- Вкладка "Відеодзвінок" -->
+        <div class="tab-pane fade" id="video-sensors" role="tabpanel" aria-labelledby="video-sensors-tab">
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-primary text-white text-center">
                     <i class="bi bi-camera-video-fill me-1"></i> Відеодзвінок
@@ -133,10 +264,20 @@
             fetch('/Home/GetSensors')
                 .then(response => response.json())
                 .then(data => {
-                    document.querySelector('#glassBreakTable tbody').innerHTML = buildTableRows(data.filter(x => x.sensorType === 0));
-                    document.querySelector('#doorTable tbody').innerHTML = buildTableRows(data.filter(x => x.sensorType === 1));
-                    document.querySelector('#motionTable tbody').innerHTML = buildTableRows(data.filter(x => x.sensorType === 2));
-                    document.querySelector('#videoDoorbellTable tbody').innerHTML = buildTableRows(data.filter(x => x.sensorType === 3));
+                    const glassBreakRows = buildTableRows(data.filter(x => x.sensorType === 0));
+                    const doorRows = buildTableRows(data.filter(x => x.sensorType === 1));
+                    const motionRows = buildTableRows(data.filter(x => x.sensorType === 2));
+                    const videoRows = buildTableRows(data.filter(x => x.sensorType === 3));
+
+                    document.querySelector('#glassBreakTableAll tbody').innerHTML = glassBreakRows;
+                    document.querySelector('#doorTableAll tbody').innerHTML = doorRows;
+                    document.querySelector('#motionTableAll tbody').innerHTML = motionRows;
+                    document.querySelector('#videoDoorbellTableAll tbody').innerHTML = videoRows;
+
+                    document.querySelector('#glassBreakTable tbody').innerHTML = glassBreakRows;
+                    document.querySelector('#doorTable tbody').innerHTML = doorRows;
+                    document.querySelector('#motionTable tbody').innerHTML = motionRows;
+                    document.querySelector('#videoDoorbellTable tbody').innerHTML = videoRows;
                 })
                 .catch(err => console.error('Помилка при оновленні сенсорів:', err));
         }
