@@ -35,7 +35,7 @@ public static class ModelBuilderExtensions
                     SensorType = SensorType.VideoDoorbell,
                     LocationId = 1,
                     DataLabel = "Рух",
-                    Data = "no motion",
+                    Data = "Рух не виявлено",
                     IsAlert = false,
                     LastReading = null
                 },
@@ -81,7 +81,7 @@ public static class ModelBuilderExtensions
                     SensorType = SensorType.Motion,
                     LocationId = 2,
                     DataLabel = "Рух",
-                    Data = "no motion",
+                    Data = "Рух не виявлено",
                     IsAlert = false,
                     LastReading = null
                 },
@@ -92,8 +92,8 @@ public static class ModelBuilderExtensions
                     Name = "Датчик відкриття дверей - Тамбур",
                     SensorType = SensorType.Door,
                     LocationId = 3,
-                    DataLabel = "Стан",
-                    Data = "no motion",
+                    DataLabel = "Рух",
+                    Data = "Рух не виявлено",
                     IsAlert = false,
                     LastReading = null
                 },
@@ -105,7 +105,7 @@ public static class ModelBuilderExtensions
                     SensorType = SensorType.Motion,
                     LocationId = 3,
                     DataLabel = "Рух",
-                    Data = "no motion",
+                    Data = "Рух не виявлено",
                     IsAlert = false,
                     LastReading = null
                 },
@@ -116,8 +116,8 @@ public static class ModelBuilderExtensions
                     Name = "Датчик відкриття дверей - Задній вхід",
                     SensorType = SensorType.Door,
                     LocationId = 4,
-                    DataLabel = "Стан",
-                    Data = "no motion",
+                    DataLabel = "Рух",
+                    Data = "Рух не виявлено",
                     IsAlert = false,
                     LastReading = null
                 },
@@ -128,7 +128,7 @@ public static class ModelBuilderExtensions
                     Name = "Датчик відкриття дверей - Підсобне приміщення",
                     SensorType = SensorType.Door,
                     LocationId = 5,
-                    DataLabel = "Стан",
+                    DataLabel = "Рух",
                     Data = "no motion",
                     IsAlert = false,
                     LastReading = null
