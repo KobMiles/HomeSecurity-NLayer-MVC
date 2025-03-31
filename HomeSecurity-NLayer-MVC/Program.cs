@@ -1,3 +1,4 @@
+using HomeSecurity_NLayer_MVC.Extensions;
 using HomeSecurity.BLL;
 using HomeSecurity.DAL;
 
@@ -10,9 +11,11 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddDbContext(connectionString);
 builder.Services.AddUnitOfWork();
+builder.Services.AddCustomIdentityServices();
 
 builder.Services.AddBusinessLogicServices();
 builder.Services.AddAutoMapper();
+builder.Services.AddFluentValidation();
 
 var app = builder.Build();
 
