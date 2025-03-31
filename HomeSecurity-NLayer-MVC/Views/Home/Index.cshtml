@@ -1,8 +1,125 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Система безпеки дому";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4">
+    <h1 class="mb-4">Система безпеки дому</h1>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Датчики розбиття скла:</h3>
+            <div class="table-responsive">
+                <table id="glassBreakTable" class="table table-bordered align-middle">
+                    <thead class="table-light">
+                    <tr>
+                        <th>Назва</th>
+                        <th>Локація</th>
+                        <th>DataLabel</th>
+                        <th>Поточні дані</th>
+                        <th>Alert</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h3>Датчики відкриття дверей:</h3>
+            <div class="table-responsive">
+                <table id="doorTable" class="table table-bordered align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Назва</th>
+                            <th>Локація</th>
+                            <th>DataLabel</th>
+                            <th>Поточні дані</th>
+                            <th>Alert</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <h3>Датчики руху:</h3>
+            <div class="table-responsive">
+                <table id="motionTable" class="table table-bordered align-middle">
+                    <thead class="table-light">
+                    <tr>
+                        <th>Назва</th>
+                        <th>Локація</th>
+                        <th>DataLabel</th>
+                        <th>Поточні дані</th>
+                        <th>Alert</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <h3>Відеодзвінок</h3>
+            <div class="table-responsive">
+                <table id="videoDoorbellTable" class="table table-bordered align-middle">
+                    <thead class="table-light">
+                    <tr>
+                        <th>Назва</th>
+                        <th>Локація</th>
+                        <th>DataLabel</th>
+                        <th>Поточні дані</th>
+                        <th>Alert</th>
+                    </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
 </div>
+
+@section Scripts {
+    <script>
+        function buildTableRows(sensors) {
+            let html = "";
+            sensors.forEach(s => {
+                html += `
+                    <tr>
+                        <td>${s.name}</td>
+                        <td>${s.locationName}</td>
+                        <td>${s.dataLabel}</td>
+                        <td>${s.data}</td>
+                        <td>${s.isAlert ? "Так" : "Ні"}</td>
+                    </tr>`;
+            });
+            return html;
+        }
+
+        function updateSensors() {
+            fetch('/Home/GetSensors')
+                .then(response => response.json())
+                .then(data => {
+                    const glassBreak = data.filter(x => x.sensorType === 0);
+                    const door = data.filter(x => x.sensorType === 1);
+                    const motion = data.filter(x => x.sensorType === 2);
+                    const video = data.filter(x => x.sensorType === 3);
+
+                    document.querySelector('#glassBreakTable tbody').innerHTML = buildTableRows(glassBreak);
+                    document.querySelector('#doorTable tbody').innerHTML = buildTableRows(door);
+                    document.querySelector('#motionTable tbody').innerHTML = buildTableRows(motion);
+                    document.querySelector('#videoDoorbellTable tbody').innerHTML = buildTableRows(video);
+                })
+                .catch(err => console.error('Помилка при оновленні сенсорів:', err));
+        }
+
+        setInterval(updateSensors, 3000);
+
+        document.addEventListener("DOMContentLoaded", updateSensors);
+    </script>
+}
