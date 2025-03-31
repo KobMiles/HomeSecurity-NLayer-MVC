@@ -1,4 +1,5 @@
 ﻿using HomeSecurity.DAL.Entities;
+using HomeSecurity.DAL.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomeSecurity.DAL.Data;
