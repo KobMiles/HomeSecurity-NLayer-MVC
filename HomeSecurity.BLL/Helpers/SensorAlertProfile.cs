@@ -8,10 +8,14 @@ public class SensorAlertProfile : Profile
 {
     public SensorAlertProfile()
     {
-        CreateMap<SensorAlertCreateDto, SensorAlert>()
-            .ReverseMap();
-
         CreateMap<SensorAlert, SensorAlertDto>()
-            .ReverseMap();
+            .ForMember(dest => dest.SensorName,
+                opt => opt.MapFrom(src => src.Sensor.Name))
+
+            .ForMember(dest => dest.SensorType, 
+                opt => opt.MapFrom(src => src.Sensor.SensorType.ToString()))
+
+            .ForMember(dest => dest.LocationName, 
+                opt => opt.MapFrom(src => src.Sensor.Location.Name));
     }
 }
