@@ -1,26 +1,23 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using HomeSecurity_NLayer_MVC.Models;
+using HomeSecurity.BLL.Interfaces.Services;
 
 namespace HomeSecurity_NLayer_MVC.Controllers;
 
-public class HomeController : Controller
+public class HomeController(ISensorService sensorService) : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
-
+    [HttpGet]
     public IActionResult Index()
     {
         return View();
     }
 
-    public IActionResult Privacy()
+    [HttpGet]
+    public async Task<IActionResult> GetSensors()
     {
-        return View();
+        var updatedSensors = await sensorService.UpdateSensorsRandomlyAsync();
+        return Json(updatedSensors);
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
