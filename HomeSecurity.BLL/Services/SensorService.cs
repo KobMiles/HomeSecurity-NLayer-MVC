@@ -33,7 +33,7 @@ public class SensorService(IUnitOfWork unitOfWork, IMapper mapper) : ISensorServ
                     int noise = _random.Next(0, 101);
                     sensor.LastReading = noise;
                     sensor.Data = noise.ToString();
-                    if (noise > 80)
+                    if (noise > 90)
                     {
                         sensor.IsAlert = true;
                         await CreateAlertForSensor(sensor, $"Сильний шум: {noise} dB");
@@ -46,7 +46,7 @@ public class SensorService(IUnitOfWork unitOfWork, IMapper mapper) : ISensorServ
 
                 case SensorType.Door:
                     {
-                        bool triggered = (_random.Next(1, 11) == 1);
+                        bool triggered = (_random.Next(1, 19) == 1);
                         if (triggered)
                         {
                             sensor.Data = "Рух виявлено";
@@ -63,7 +63,7 @@ public class SensorService(IUnitOfWork unitOfWork, IMapper mapper) : ISensorServ
 
                 case SensorType.Motion:
                     {
-                        bool triggered = (_random.Next(1, 11) == 1);
+                        bool triggered = (_random.Next(1, 19) == 1);
                         if (triggered)
                         {
                             sensor.Data = "Рух виявлено";
@@ -80,7 +80,7 @@ public class SensorService(IUnitOfWork unitOfWork, IMapper mapper) : ISensorServ
 
                 case SensorType.VideoDoorbell:
                     {
-                        bool triggered = (_random.Next(1, 11) == 1);
+                        bool triggered = (_random.Next(1, 19) == 1);
                         if (triggered)
                         {
                             sensor.Data = "Рух виявлено";
