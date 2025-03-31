@@ -49,13 +49,13 @@ public class SensorService(IUnitOfWork unitOfWork, IMapper mapper) : ISensorServ
                         bool triggered = (_random.Next(1, 11) == 1);
                         if (triggered)
                         {
-                            sensor.Data = "motion";
+                            sensor.Data = "Рух виявлено";
                             sensor.IsAlert = true;
                             await CreateAlertForSensor(sensor, "Двері відкрились!");
                         }
                         else
                         {
-                            sensor.Data = "no motion";
+                            sensor.Data = "Руху не виявлено";
                             sensor.IsAlert = false;
                         }
                         break;
@@ -66,13 +66,13 @@ public class SensorService(IUnitOfWork unitOfWork, IMapper mapper) : ISensorServ
                         bool triggered = (_random.Next(1, 11) == 1);
                         if (triggered)
                         {
-                            sensor.Data = "motion";
+                            sensor.Data = "Рух виявлено";
                             sensor.IsAlert = true;
                             await CreateAlertForSensor(sensor, "Рух виявлено!");
                         }
                         else
                         {
-                            sensor.Data = "no motion";
+                            sensor.Data = "Руху не виявлено";
                             sensor.IsAlert = false;
                         }
                         break;
@@ -83,13 +83,13 @@ public class SensorService(IUnitOfWork unitOfWork, IMapper mapper) : ISensorServ
                         bool triggered = (_random.Next(1, 11) == 1);
                         if (triggered)
                         {
-                            sensor.Data = "motion";
+                            sensor.Data = "Рух виявлено";
                             sensor.IsAlert = true;
                             await CreateAlertForSensor(sensor, "Відеодзвінок: рух!");
                         }
                         else
                         {
-                            sensor.Data = "no motion";
+                            sensor.Data = "Руху не виявлено";
                             sensor.IsAlert = false;
                         }
                         break;
