@@ -1,4 +1,6 @@
 ﻿using HomeSecurity.DAL.Data;
+using HomeSecurity.DAL.Interfaces.Repositories;
+using HomeSecurity.DAL.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,8 +14,8 @@ public static class ServiceExtensions
             x.UseSqlServer(connectionString));
     }
 
-    //public static void AddUnitOfWork(this IServiceCollection services)
-    //{
-    //    services.AddScoped<IUnitOfWork, UnitOfWork>();
-    //}
+    public static void AddUnitOfWork(this IServiceCollection services)
+    {
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+    }
 }
