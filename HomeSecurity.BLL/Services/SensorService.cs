@@ -9,7 +9,7 @@ using HomeSecurity.DAL.Interfaces.Repositories;
 
 namespace HomeSecurity.BLL.Services;
 
-public class SensorService(IUnitOfWork unitOfWork, IMapper mapper) : ISensorService
+public class SensorService(IUnitOfWork unitOfWork, IAlarmService alarmService, IMapper mapper) : ISensorService
 {
     private readonly Random _random = new();
 
@@ -25,6 +25,7 @@ public class SensorService(IUnitOfWork unitOfWork, IMapper mapper) : ISensorServ
         var spec = new SensorsWithLocationSpec();
         var sensors = await unitOfWork.Sensors.ListAsync(spec);
 
+        var isAlarmActive = await alarmService.GetAlarmStatusAsync();
         foreach (var sensor in sensors)
         {
             switch (sensor.SensorType)
@@ -35,7 +36,7 @@ public class SensorService(IUnitOfWork unitOfWork, IMapper mapper) : ISensorServ
                     sensor.Data = noise.ToString();
                     if (noise > 90)
                     {
-                        sensor.IsAlert = true;
+                        sensor.IsAlert = isAlarmActive;
                         await CreateAlertForSensor(sensor, $"Сильний шум: {noise} dB");
                     }
                     else
@@ -50,7 +51,7 @@ public class SensorService(IUnitOfWork unitOfWork, IMapper mapper) : ISensorServ
                         if (triggered)
                         {
                             sensor.Data = "Рух виявлено";
-                            sensor.IsAlert = true;
+                            sensor.IsAlert = isAlarmActive;
                             await CreateAlertForSensor(sensor, "Двері відкрились!");
                         }
                         else
@@ -67,7 +68,7 @@ public class SensorService(IUnitOfWork unitOfWork, IMapper mapper) : ISensorServ
                         if (triggered)
                         {
                             sensor.Data = "Рух виявлено";
-                            sensor.IsAlert = true;
+                            sensor.IsAlert = isAlarmActive;
                             await CreateAlertForSensor(sensor, "Рух виявлено!");
                         }
                         else
@@ -84,7 +85,7 @@ public class SensorService(IUnitOfWork unitOfWork, IMapper mapper) : ISensorServ
                         if (triggered)
                         {
                             sensor.Data = "Рух виявлено";
-                            sensor.IsAlert = true;
+                            sensor.IsAlert = isAlarmActive;
                             await CreateAlertForSensor(sensor, "Відеодзвінок: рух!");
                         }
                         else
@@ -113,6 +114,10 @@ public class SensorService(IUnitOfWork unitOfWork, IMapper mapper) : ISensorServ
 
     private async Task CreateAlertForSensor(Sensor sensor, string message)
     {
+        var isAlarmActive = await alarmService.GetAlarmStatusAsync();
+        if (!isAlarmActive) 
+            return;
+
         var alert = new SensorAlert
         {
             SensorId = sensor.Id,
