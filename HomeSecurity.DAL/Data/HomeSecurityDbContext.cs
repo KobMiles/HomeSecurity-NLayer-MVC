@@ -12,7 +12,7 @@ public class HomeSecurityDbContext(DbContextOptions<HomeSecurityDbContext> optio
     public DbSet<Sensor> Sensors { get; set; }
     public DbSet<Location> Locations { get; set; }
     public DbSet<SensorAlert> SensorsAlerts { get; set; }
-
+    public DbSet<AlarmStatus> AlarmStatuses { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -21,9 +21,11 @@ public class HomeSecurityDbContext(DbContextOptions<HomeSecurityDbContext> optio
         modelBuilder.ApplyConfiguration(new LocationConfiguration());
         modelBuilder.ApplyConfiguration(new SensorConfiguration());
         modelBuilder.ApplyConfiguration(new SensorAlertConfiguration());
+        modelBuilder.ApplyConfiguration(new AlarmStatusConfiguration());
 
         modelBuilder.ApplyConfiguration(new UserConfiguration());
 
+        modelBuilder.SeedAlarmStatus();
         modelBuilder.SeedLocations();
         modelBuilder.SeedSensors();
     }

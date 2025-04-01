@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Home Security";
+}
+
+<div class="container text-center mt-5">
+    <h1 class="display-4">Система Home Security</h1>
+    <p class="lead">Ваш надійний партнер у забезпеченні безпеки дому.</p>
+    <div class="mt-4">
+        @if (User.Identity != null && User.Identity.IsAuthenticated)
+        {
+            <a asp-controller="Account" asp-action="Profile" class="btn btn-primary btn-lg me-2">Профіль</a>
+            <a asp-controller="Security" asp-action="Index" class="btn btn-outline-primary btn-lg me-2">Всі датчики</a>
+            <a asp-controller="Alarms" asp-action="Index" class="btn btn-outline-primary btn-lg">Історія тривог</a>
+        }
+        else
+        {
+            <a asp-controller="Account" asp-action="Register" class="btn btn-primary btn-lg me-2">Реєстрація</a>
+            <a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary btn-lg">Авторизація</a>
+        }
+    </div>
+</div>

@@ -8,5 +8,4 @@ namespace HomeSecurity.DAL.Repositories;
 public class UserRepository(DbContext context)
     : RepositoryBase<User>(context), IUserRepository
 {
-
 }

@@ -1,4 +1,5 @@
-﻿using HomeSecurity.DAL.Interfaces;
+﻿using HomeSecurity.DAL.Entities.Enums;
+using HomeSecurity.DAL.Interfaces;
 
 namespace HomeSecurity.DAL.Entities;
 
@@ -15,12 +16,4 @@ public class Sensor : IEntity
     public bool? IsAlert { get; set; }
 
     public ICollection<SensorAlert> Alerts { get; set; } = new HashSet<SensorAlert>();
-}
-
-public enum SensorType
-{
-    GlassBreak,
-    Door,
-    Motion,
-    VideoDoorbell
 }

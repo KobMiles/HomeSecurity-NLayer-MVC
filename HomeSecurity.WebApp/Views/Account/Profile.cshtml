@@ -1,0 +1,61 @@
+﻿@model HomeSecurity_NLayer_MVC.ViewModels.ProfileViewModel
+@{
+    ViewData["Title"] = "Профіль користувача";
+}
+
+<div class="profile-page">
+    <div class="profile-header">
+        <div class="overlay">
+            <div class="container text-center">
+                <h1 class="display-4 text-primary">Ласкаво просимо, @Model.CurrentUser.FirstName!</h1>
+                <p class="lead text-primary">Ваш особистий простір безпеки та спільноти</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="profile-card card shadow-sm">
+                    <div class="card-body">
+                        <h3 class="text-center">@Model.CurrentUser.FirstName @Model.CurrentUser.LastName</h3>
+                        <p class="text-center">@Model.CurrentUser.UserName</p>
+                        <hr>
+                        <p class="mb-0 text-center">Ваш акаунт на платформі Home Security</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4>Список активних користувачів</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover creative-table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Email</th>
+                                        <th>Ім'я</th>
+                                        <th>Прізвище</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var user in Model.AllUsers)
+                                    {
+                                        <tr>
+                                            <td>@user.UserName</td>
+                                            <td>@user.FirstName</td>
+                                            <td>@user.LastName</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

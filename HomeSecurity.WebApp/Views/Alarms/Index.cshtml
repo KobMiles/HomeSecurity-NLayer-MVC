@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model IEnumerable<HomeSecurity.BLL.DTOs.SensorAlerts.SensorAlertDto>
+@{
+    ViewData["Title"] = "Повідомлення з датчиків";
+    string currentSort = ViewData["CurrentSort"] as string ?? "date_desc";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Повідомлення з датчиків</h2>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@(currentSort == "date_asc" ? "date_desc" : "date_asc")">
+                    Дата @if(currentSort == "date_asc") { <span>&uarr;</span> } else if(currentSort == "date_desc") { <span>&darr;</span> }
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="sensorType">
+                    Назва датчика
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="room">
+                    Локація
+                </a>
+            </th>
+            <th>Повідомлення</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var alert in Model)
+        {
+            <tr>
+                <td>@alert.Timestamp.ToString("dd.MM.yyyy HH:mm:ss")</td>
+                <td>@alert.SensorName</td>
+                <td>@alert.LocationName</td>
+                <td>@alert.Message</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

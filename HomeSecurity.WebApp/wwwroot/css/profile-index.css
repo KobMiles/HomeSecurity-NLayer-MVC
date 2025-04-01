@@ -1,0 +1,40 @@
+﻿.profile-page {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.profile-header {
+    position: relative;
+    background: linear-gradient(135deg, var(--primary-color), #6c757d);
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+    .profile-header .overlay {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 60px 0;
+    }
+
+.profile-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+    .profile-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .profile-card .card-body {
+        text-align: center;
+    }
+
+.creative-table tbody tr:hover {
+    background-color: rgba(13, 110, 253, 0.1);
+}
+
+@media (max-width: 768px) {
+    .profile-header {
+        padding: 60px 0;
+    }
+}

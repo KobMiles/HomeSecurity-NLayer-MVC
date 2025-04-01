@@ -1,4 +1,5 @@
 ﻿using HomeSecurity.DAL.Entities;
+using HomeSecurity.DAL.Entities.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomeSecurity.DAL.Data;
@@ -26,7 +27,6 @@ public static class ModelBuilderExtensions
         modelBuilder
             .Entity<Sensor>()
             .HasData(
-                // Головний вхід: Відеодзвінок (VideoDoorbell)
                 new Sensor
                 {
                     Id = 1,
@@ -34,11 +34,10 @@ public static class ModelBuilderExtensions
                     SensorType = SensorType.VideoDoorbell,
                     LocationId = 1,
                     DataLabel = "Рух",
-                    Data = "no motion",
+                    Data = "Рух не виявлено",
                     IsAlert = false,
                     LastReading = null
                 },
-                // Вітальня: 3 датчики розбиття скла (GlassBreak)
                 new Sensor
                 {
                     Id = 2,
@@ -72,7 +71,6 @@ public static class ModelBuilderExtensions
                     IsAlert = false,
                     LastReading = 0.0
                 },
-                // Вітальня: датчик руху (Motion)
                 new Sensor
                 {
                     Id = 5,
@@ -80,23 +78,21 @@ public static class ModelBuilderExtensions
                     SensorType = SensorType.Motion,
                     LocationId = 2,
                     DataLabel = "Рух",
-                    Data = "no motion",
+                    Data = "Рух не виявлено",
                     IsAlert = false,
                     LastReading = null
                 },
-                // Тамбур: датчик відкриття дверей (Door)
                 new Sensor
                 {
                     Id = 6,
                     Name = "Датчик відкриття дверей - Тамбур",
                     SensorType = SensorType.Door,
                     LocationId = 3,
-                    DataLabel = "Стан",
-                    Data = "no motion",
+                    DataLabel = "Рух",
+                    Data = "Рух не виявлено",
                     IsAlert = false,
                     LastReading = null
                 },
-                // Тамбур: датчик руху (Motion)
                 new Sensor
                 {
                     Id = 7,
@@ -104,35 +100,32 @@ public static class ModelBuilderExtensions
                     SensorType = SensorType.Motion,
                     LocationId = 3,
                     DataLabel = "Рух",
-                    Data = "no motion",
+                    Data = "Рух не виявлено",
                     IsAlert = false,
                     LastReading = null
                 },
-                // Задній вхід: датчик відкриття дверей (Door)
                 new Sensor
                 {
                     Id = 8,
                     Name = "Датчик відкриття дверей - Задній вхід",
                     SensorType = SensorType.Door,
                     LocationId = 4,
-                    DataLabel = "Стан",
-                    Data = "no motion",
+                    DataLabel = "Рух",
+                    Data = "Рух не виявлено",
                     IsAlert = false,
                     LastReading = null
                 },
-                // Підсобне приміщення: датчик відкриття дверей (Door)
                 new Sensor
                 {
                     Id = 9,
                     Name = "Датчик відкриття дверей - Підсобне приміщення",
                     SensorType = SensorType.Door,
                     LocationId = 5,
-                    DataLabel = "Стан",
+                    DataLabel = "Рух",
                     Data = "no motion",
                     IsAlert = false,
                     LastReading = null
                 },
-                // Житлова кімната 1: датчик розбиття скла (GlassBreak)
                 new Sensor
                 {
                     Id = 10,
@@ -144,7 +137,6 @@ public static class ModelBuilderExtensions
                     IsAlert = false,
                     LastReading = 0.0
                 },
-                // Житлова кімната 2: датчик розбиття скла (GlassBreak)
                 new Sensor
                 {
                     Id = 11,
@@ -156,7 +148,6 @@ public static class ModelBuilderExtensions
                     IsAlert = false,
                     LastReading = 0.0
                 },
-                // Коридор: датчик руху (Motion)
                 new Sensor
                 {
                     Id = 12,
@@ -169,5 +160,12 @@ public static class ModelBuilderExtensions
                     LastReading = null
                 }
             );
+    }
+
+    public static void SeedAlarmStatus(this ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<AlarmStatus>().HasData(
+            new AlarmStatus { Id = 1, IsActive = true, LastUpdated = DateTime.Now }
+        );
     }
 }

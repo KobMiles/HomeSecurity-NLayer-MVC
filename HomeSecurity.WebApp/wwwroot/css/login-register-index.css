@@ -1,0 +1,67 @@
+﻿.login-wrapper {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--light-bg);
+}
+
+.login-card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--primary-color);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    max-width: 400px;
+    width: 100%;
+}
+
+.login-header {
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.custom-label {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.custom-input {
+    border: 1px solid var(--primary-color);
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    width: 100%;
+}
+
+    .custom-input:focus {
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        border-color: var(--primary-color);
+    }
+
+.custom-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.custom-check-label {
+    color: var(--primary-color);
+}
+
+.custom-btn {
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    color: #fff;
+    font-weight: 600;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    width: 100%;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+    .custom-btn:hover,
+    .custom-btn:focus {
+        background-color: var(--primary-hover);
+        border-color: var(--primary-hover);
+    }
