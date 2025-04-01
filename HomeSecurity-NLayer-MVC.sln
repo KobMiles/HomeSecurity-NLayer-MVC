@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35818.85 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeSecurity.WebApp", "HomeSecurity-NLayer-MVC\HomeSecurity.WebApp.csproj", "{61458E95-63C8-4BC9-B3DA-93082BF6BB12}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeSecurity.WebApp", "HomeSecurity.WebApp\HomeSecurity.WebApp.csproj", "{61458E95-63C8-4BC9-B3DA-93082BF6BB12}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeSecurity.DAL", "HomeSecurity.DAL\HomeSecurity.DAL.csproj", "{DD3BFAAB-A5C7-47C9-9F00-98B552054423}"
 EndProject
