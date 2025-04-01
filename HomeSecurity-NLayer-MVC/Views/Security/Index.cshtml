@@ -7,7 +7,19 @@
         <i class="bi bi-shield-lock-fill me-2"></i>Система безпеки дому
     </h1>
 
-    <!-- Навігаційні вкладки -->
+    <div class="row mb-4">
+        <div class="col-md-12 text-center">
+            <button id="alarmToggle" class="btn btn-lg shadow-sm" 
+                    style="border: 2px solid #0d6efd; transition: all 0.3s ease;">
+                <i class="bi bi-shield-check fs-1"></i>
+                <span class="d-block mt-2 fs-5">
+                    Система активного захисту: 
+                    <span id="alarmStatusText">...</span>
+                </span>
+            </button>
+        </div>
+    </div>
+
     <ul class="nav nav-tabs" id="sensorTabs" role="tablist">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="all-sensors-tab" data-bs-toggle="tab" data-bs-target="#all-sensors" type="button" role="tab" aria-controls="all-sensors" aria-selected="true">
@@ -36,7 +48,6 @@
         </li>
     </ul>
 
-    <!-- Фільтр за локацією. Не найкраща практика -->
     <div class="row my-3">
         <div class="col-md-4 offset-md-8">
             <label for="locationFilter" class="form-label fw-bold text-primary">Фільтр за локацією:</label>
@@ -55,10 +66,8 @@
     </div>
 
     <div class="tab-content mt-4" id="sensorTabsContent">
-        <!-- Вкладка "Всі датчики" -->
         <div class="tab-pane fade show active" id="all-sensors" role="tabpanel" aria-labelledby="all-sensors-tab">
             <div class="row g-4">
-                <!-- Датчики розбиття скла -->
                 <div class="col-lg-6">
                     <div class="card shadow-sm border-0">
                         <div class="card-header bg-primary text-white text-center">
@@ -82,7 +91,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Датчики відкриття дверей -->
                 <div class="col-lg-6">
                     <div class="card shadow-sm border-0">
                         <div class="card-header bg-primary text-white text-center">
@@ -106,7 +114,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Датчики руху -->
                 <div class="col-lg-6">
                     <div class="card shadow-sm border-0">
                         <div class="card-header bg-primary text-white text-center">
@@ -130,7 +137,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Відеодзвінок -->
                 <div class="col-lg-6">
                     <div class="card shadow-sm border-0">
                         <div class="card-header bg-primary text-white text-center">
@@ -157,7 +163,6 @@
             </div>
         </div>
 
-        <!-- Вкладка "Датчики розбиття скла" -->
         <div class="tab-pane fade" id="glass-sensors" role="tabpanel" aria-labelledby="glass-sensors-tab">
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-primary text-white text-center">
@@ -182,7 +187,6 @@
             </div>
         </div>
 
-        <!-- Вкладка "Датчики відкриття дверей" -->
         <div class="tab-pane fade" id="door-sensors" role="tabpanel" aria-labelledby="door-sensors-tab">
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-primary text-white text-center">
@@ -207,7 +211,6 @@
             </div>
         </div>
 
-        <!-- Вкладка "Датчики руху" -->
         <div class="tab-pane fade" id="motion-sensors" role="tabpanel" aria-labelledby="motion-sensors-tab">
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-primary text-white text-center">
@@ -232,7 +235,6 @@
             </div>
         </div>
 
-        <!-- Вкладка "Відеодзвінок" -->
         <div class="tab-pane fade" id="video-sensors" role="tabpanel" aria-labelledby="video-sensors-tab">
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-primary text-white text-center">
@@ -261,6 +263,43 @@
 
 @section Scripts {
     <script>
+        async function updateAlarmStatus() {
+            try {
+                const response = await fetch('/Security/GetAlarmStatus');
+                if (!response.ok) throw new Error('Помилка мережі');
+                const data = await response.json();
+
+                const btn = document.getElementById('alarmToggle');
+                const statusText = document.getElementById('alarmStatusText');
+
+                btn.classList.toggle('active', data.isActive);
+                statusText.textContent = data.isActive ? 'АКТИВОВАНО' : 'ВИМКНЕНО';
+                btn.style.backgroundColor = data.isActive ? '#0d6efd' : '';
+                btn.style.color = data.isActive ? 'white' : '';
+
+            } catch (error) {
+                console.error('Помилка оновлення статусу:', error);
+            }
+        }
+
+        document.getElementById('alarmToggle').addEventListener('click', async () => {
+            try {
+                const response = await fetch('/Security/ToggleAlarm', {
+                    method: 'POST',
+                    headers: {
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    }
+                });
+
+                if (!response.ok) throw new Error('Помилка перемикання');
+                await updateAlarmStatus();
+
+            } catch (error) {
+                console.error('Помилка:', error);
+                alert('Сталася помилка! Спробуйте ще раз.');
+            }
+        });
+
         function buildTableRows(sensors) {
             return sensors.map(s => {
                 const badge = s.isAlert
@@ -278,11 +317,13 @@
         }
 
         function updateSensors() {
-            fetch('/Home/GetSensors')
-                .then(response => response.json())
+            fetch('/Security/GetSensors')
+                .then(response => {
+                    if (!response.ok) throw new Error('Помилка мережі');
+                    return response.json();
+                })
                 .then(data => {
                     const selectedLocation = document.querySelector('#locationFilter').value;
-
                     if (selectedLocation) {
                         data = data.filter(x => x.locationName === selectedLocation);
                     }
@@ -292,26 +333,29 @@
                     const motionRows = buildTableRows(data.filter(x => x.sensorType === 2));
                     const videoRows = buildTableRows(data.filter(x => x.sensorType === 3));
 
-                    // Оновлення для вкладки "Всі датчики"
-                    document.querySelector('#glassBreakTableAll tbody').innerHTML = glassBreakRows;
-                    document.querySelector('#doorTableAll tbody').innerHTML = doorRows;
-                    document.querySelector('#motionTableAll tbody').innerHTML = motionRows;
-                    document.querySelector('#videoDoorbellTableAll tbody').innerHTML = videoRows;
+                    const updateTable = (selector, rows) => {
+                        const tbody = document.querySelector(selector);
+                        if (tbody) tbody.innerHTML = rows;
+                    };
 
-                    // Оновлення для окремих вкладок
-                    document.querySelector('#glassBreakTable tbody').innerHTML = glassBreakRows;
-                    document.querySelector('#doorTable tbody').innerHTML = doorRows;
-                    document.querySelector('#motionTable tbody').innerHTML = motionRows;
-                    document.querySelector('#videoDoorbellTable tbody').innerHTML = videoRows;
+                    updateTable('#glassBreakTableAll tbody', glassBreakRows);
+                    updateTable('#doorTableAll tbody', doorRows);
+                    updateTable('#motionTableAll tbody', motionRows);
+                    updateTable('#videoDoorbellTableAll tbody', videoRows);
+
+                    updateTable('#glassBreakTable tbody', glassBreakRows);
+                    updateTable('#doorTable tbody', doorRows);
+                    updateTable('#motionTable tbody', motionRows);
+                    updateTable('#videoDoorbellTable tbody', videoRows);
                 })
-                .catch(err => console.error('Помилка при оновленні сенсорів:', err));
+                .catch(err => console.error('Помилка оновлення датчиків:', err));
         }
 
-        setInterval(updateSensors, 7000);
         document.addEventListener("DOMContentLoaded", () => {
+            updateAlarmStatus();
             updateSensors();
-            // Оновлення при зміні фільтра за локацією
+            setInterval(updateSensors, 7000);
             document.querySelector('#locationFilter').addEventListener('change', updateSensors);
         });
-    </script>
+</script>
 }
