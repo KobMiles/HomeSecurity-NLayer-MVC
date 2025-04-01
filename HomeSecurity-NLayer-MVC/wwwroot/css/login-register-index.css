@@ -1,7 +1,4 @@
-﻿/* login.css */
-
-/* Контейнер для логіну */
-.login-wrapper {
+﻿.login-wrapper {
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -9,7 +6,6 @@
     background-color: var(--light-bg);
 }
 
-/* Карта логіну */
 .login-card {
     background-color: #fff;
     padding: 2rem;
@@ -20,7 +16,6 @@
     width: 100%;
 }
 
-/* Заголовок форми */
 .login-header {
     color: var(--primary-color);
     font-weight: bold;
@@ -28,7 +23,6 @@
     text-align: center;
 }
 
-/* Стилізація міток (label) */
 .custom-label {
     font-weight: 600;
     color: var(--primary-color);
