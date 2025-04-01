@@ -9,5 +9,4 @@ public class Repository<TEntity>(DbContext context)
     : RepositoryBase<TEntity>(context), IRepository<TEntity>
     where TEntity : class, IEntity
 {
-
 }
