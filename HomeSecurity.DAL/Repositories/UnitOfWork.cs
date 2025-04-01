@@ -10,6 +10,7 @@ public class UnitOfWork(HomeSecurityDbContext context) : IUnitOfWork
     private IRepository<Sensor>? _sensors;
     private IRepository<Location>? _locations;
     private IRepository<SensorAlert>? _sensorAlerts;
+    private IRepository<AlarmStatus>? _alarmStatuses;
     private IUserRepository? _users;
 
     public IRepository<Sensor> Sensors
@@ -20,6 +21,9 @@ public class UnitOfWork(HomeSecurityDbContext context) : IUnitOfWork
 
     public IRepository<SensorAlert> SensorAlerts
         => _sensorAlerts ??= new Repository<SensorAlert>(context);
+
+    public IRepository<AlarmStatus> AlarmStatuses
+        => _alarmStatuses ??= new Repository<AlarmStatus>(context);
 
     public IUserRepository Users
         => _users ??= new UserRepository(context);
