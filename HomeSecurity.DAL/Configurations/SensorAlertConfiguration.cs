@@ -8,16 +8,20 @@ public class SensorAlertConfiguration : IEntityTypeConfiguration<SensorAlert>
 {
     public void Configure(EntityTypeBuilder<SensorAlert> builder)
     {
-        builder.HasKey(sa => sa.Id);
+        builder
+            .HasKey(sa => sa.Id);
 
-        builder.Property(sa => sa.Timestamp)
+        builder
+            .Property(sa => sa.Timestamp)
             .IsRequired();
 
-        builder.Property(sa => sa.Message)
+        builder
+            .Property(sa => sa.Message)
             .HasMaxLength(200)
             .IsRequired(false);
 
-        builder.HasOne(sa => sa.Sensor)
+        builder
+            .HasOne(sa => sa.Sensor)
             .WithMany(s => s.Alerts)
             .HasForeignKey(sa => sa.SensorId);
     }
