@@ -1,4 +1,4 @@
-namespace HomeSecurity_NLayer_MVC.Models
+namespace HomeSecurity_NLayer_MVC.ViewModels
 {
     public class ErrorViewModel
     {
