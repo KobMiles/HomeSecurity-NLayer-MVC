@@ -98,13 +98,13 @@ By configuring your connection string correctly, you ensure seamless integration
 
 Run the following command to apply migrations and create the database schema:
 ```bash
-dotnet ef database update --project HomeSecurity.DAL --startup-project HomeSecurity-NLayer-MVC
+dotnet ef database update --project HomeSecurity.DAL --startup-project HomeSecurity.WebApp
 ```
 
 If migrations are missing, create one:
 ```bash
-dotnet ef migrations add InitialCreate --project HomeSecurity.DAL --startup-project HomeSecurity-NLayer-MVC
-dotnet ef database update --project HomeSecurity.DAL --startup-project HomeSecurity-NLayer-MVC
+dotnet ef migrations add InitialCreate --project HomeSecurity.DAL --startup-project HomeSecurity.WebApp
+dotnet ef database update --project HomeSecurity.DAL --startup-project HomeSecurity.WebApp
 ```
 
 
@@ -112,7 +112,7 @@ dotnet ef database update --project HomeSecurity.DAL --startup-project HomeSecur
 
 Start the **ASP.NET Core MVC** application:
 ```bash
-dotnet run --project HomeSecurity-NLayer-MVC.WebApp
+dotnet run --project HomeSecurity.WebApp
 ```
 
 Alternatively, if using **Visual Studio**:
