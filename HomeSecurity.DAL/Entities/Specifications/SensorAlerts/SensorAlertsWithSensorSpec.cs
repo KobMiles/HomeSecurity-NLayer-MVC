@@ -6,7 +6,8 @@ public class SensorAlertsWithSensorSpec : Specification<SensorAlert>
 {
     public SensorAlertsWithSensorSpec()
     {
-        Query.Include(sa => sa.Sensor)
+        Query
+            .Include(sa => sa.Sensor)
             .ThenInclude(s => s.Location);
     }
 }
