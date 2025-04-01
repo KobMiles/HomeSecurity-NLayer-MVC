@@ -1,7 +1,6 @@
 ﻿using HomeSecurity.BLL.DTOs.Users;
 using HomeSecurity.BLL.Interfaces.Services;
 using HomeSecurity_NLayer_MVC.Filters;
-using HomeSecurity_NLayer_MVC.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -57,10 +56,8 @@ public class AccountController(IAuthService authService, IUserService userServic
             {
                 return Redirect(returnUrl);
             }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         ModelState.AddModelError(string.Empty, "Invalid login attempt.");
@@ -84,7 +81,7 @@ public class AccountController(IAuthService authService, IUserService userServic
         var viewModel = new ProfileViewModel
         {
             CurrentUser = currentUser,
-            AllUsers = allUsers
+            AllUsers = [.. allUsers]
         };
 
         return View(viewModel);
