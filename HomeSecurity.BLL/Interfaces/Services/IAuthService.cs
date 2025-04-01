@@ -7,8 +7,6 @@ namespace HomeSecurity.BLL.Interfaces.Services;
 public interface IAuthService
 {
     Task<IdentityResult> RegisterAsync(UserRegisterDto registerDto);
-
     Task<IdentitySignInResult> LoginAsync(UserLoginDto loginDto);
-
     Task LogoutAsync();
 }
