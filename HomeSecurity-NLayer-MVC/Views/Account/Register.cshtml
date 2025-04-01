@@ -1,6 +1,6 @@
 ﻿@model HomeSecurity.BLL.DTOs.Users.UserRegisterDto
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "Реєстрація";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -17,22 +17,22 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="FirstName" class="custom-label"></label>
+                <label asp-for="FirstName" class="custom-label">Ім'я</label>
                 <input asp-for="FirstName" class="form-control custom-input" placeholder="Введіть ім'я" />
                 <span asp-validation-for="FirstName" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="LastName" class="custom-label"></label>
+                <label asp-for="LastName" class="custom-label">Прізвище</label>
                 <input asp-for="LastName" class="form-control custom-input" placeholder="Введіть прізвище" />
                 <span asp-validation-for="LastName" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="Password" class="custom-label"></label>
+                <label asp-for="Password" class="custom-label">Пароль</label>
                 <input asp-for="Password" class="form-control custom-input" type="password" placeholder="Введіть ваш пароль" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="ConfirmPassword" class="custom-label">Confirm Password</label>
+                <label asp-for="ConfirmPassword" class="custom-label">Підтвердіть пароль</label>
                 <input asp-for="ConfirmPassword" class="form-control custom-input" type="password" placeholder="Підтвердіть ваш пароль" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
